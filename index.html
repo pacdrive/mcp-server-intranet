@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>IA operando EcoStruxure Machine Expert - Un servidor MCP para PacDrive3</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #2c3e50;
+            line-height: 1.6;
+            margin: 40px auto;
+            max-width: 850px;
+            padding: 20px;
+        }
+        .header {
+            border-bottom: 2px solid #009639;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+        .subtitle-top {
+            font-size: 11pt;
+            font-weight: bold;
+            color: #009639;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        h1 {
+            font-size: 20pt;
+            color: #111;
+            margin: 5px 0 10px 0;
+        }
+        .meta-info {
+            font-size: 9.5pt;
+            color: #555;
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .kpi-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        .kpi-card {
+            flex: 1;
+            background-color: #f0f7f4;
+            border-top: 4px solid #009639;
+            padding: 12px 8px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .kpi-number {
+            font-size: 22pt;
+            font-weight: bold;
+            color: #009639;
+            line-height: 1;
+        }
+        .kpi-label {
+            font-size: 8.5pt;
+            font-weight: bold;
+            color: #333;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 13pt;
+            color: #009639;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 4px;
+            margin-top: 30px;
+        }
+        h3 {
+            font-size: 11pt;
+            color: #2c3e50;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .callout {
+            background-color: #fdfefe;
+            border-left: 4px solid #3498db;
+            padding: 12px 15px;
+            margin: 15px 0;
+            font-size: 9.5pt;
+        }
+        .callout-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 4px;
+        }
+        ol, ul {
+            padding-left: 20px;
+            font-size: 10pt;
+        }
+        li {
+            margin-bottom: 6px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 9.5pt;
+        }
+        th {
+            background-color: #009639;
+            color: white;
+            text-align: left;
+            padding: 8px 10px;
+            font-weight: 600;
+        }
+        td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .badge {
+            background-color: #009639;
+            color: white;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+            min-width: 20px;
+        }
+        .case-box {
+            background-color: #fff9e6;
+            border: 1px solid #ffe58f;
+            border-radius: 4px;
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            font-size: 9.5pt;
+        }
+        .case-title {
+            font-weight: bold;
+            color: #d48806;
+            margin-bottom: 4px;
+        }
+        .solution-text {
+            color: #389e0d;
+            font-weight: bold;
+        }
+        .quote-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            font-style: italic;
+            text-align: center;
+            margin: 25px 0;
+            font-size: 10pt;
+            color: #495057;
+        }
+        .footer {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8.5pt;
+            color: #888;
+        }
+        @media print {
+            body { max-width: 100%; margin: 0; padding: 0; }
+            .kpi-card, th, .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+
+        .layout-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 30px 0 30px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <p class="subtitle-top">Un servidor MCP para PacDrive3 — estado del proyecto</p>
+        <h1>IA operando EcoStruxure Machine Expert</h1>
+    </div>
+
+    <div class="meta-info">
+        <span><strong>Autor:</strong> Santiago Pavía - OEM Solutions</span>
+        <span><strong>Fecha:</strong> Agosto 2026</span>
+        <span><strong>Entorno:</strong> PacDrive3 / EcoStruxure Machine Expert 2.6</span>
+    </div>
+
+    <h2>1. Cómo funciona la arquitectura</h2>
+    
+    <h3>Elegir el asistente de IA adecuado</h3>
+    <p>El primer paso de este proyecto no fue escribir código, sino elegir qué IA era la más adecuada para interactuar con EcoStruxure Machine Expert. Cuando inicié este desarrollo, ChatGPT Desktop no ofrecía esa capacidad; Gemini solo la tenía en su línea de comandos o como extensión de VS Code, sin una aplicación de escritorio equivalente; y GitHub Copilot sigue atado a editores de código. Claude Desktop, en cambio, ya la ofrecía desde su propia aplicación de escritorio, con un énfasis particular en programación — precisamente el terreno de este proyecto.</p>
+
+    <p>Esa capacidad se llama ser <strong>cliente MCP</strong>: hablar el protocolo MCP (Model Context Protocol) que permite conectarse a servidores externos que ofrecen herramientas nuevas. Conviene no confundir dos piezas: Claude Desktop (no confundir con Claude Code) es la aplicación de escritorio de Claude, la IA escogida; el servidor MCP de este proyecto es un programa Python aparte (<code>server.py</code>) que Claude Desktop arranca al iniciarse. Ambos se hablan por el protocolo MCP, no comparten tecnología.</p>
+
+    <h3>Cómo Claude conoce las herramientas disponibles</h3>
+    <p>Al arrancar ese proceso, Claude Desktop y el servidor MCP hacen un intercambio inicial por el protocolo MCP: el servidor le comunica el catálogo completo de herramientas que ofrece — en este caso, las 90 descritas en el capítulo 2, cada una con su descripción, sus parámetros y qué puede fallar. Esto ocurre una vez, al principio de la sesión, no en cada petición: Claude no necesita volver a preguntar al servidor qué herramientas existen cada vez que el usuario escribe algo nuevo. Ya las conoce desde el arranque, igual que un ingeniero que ya se ha leído el manual antes de empezar a trabajar.</p>
+
+    <p>Cuando el usuario escribe una petición, Claude decide, a partir de ese catálogo ya conocido, qué herramienta usar y con qué parámetros — sin ninguna consulta adicional: esa parte ya está resuelta de antemano.</p>
+
+    <h3>Por qué hace falta un JSON y un segundo programa</h3>
+    <p>Aquí aparece la restricción técnica que obliga a todo el diseño: el servidor MCP corre sobre una versión moderna de Python (CPython). Pero la API de Scripting de Machine Expert — la única forma soportada de automatizar el programa — solo funciona sobre <strong>IronPython 2.7</strong>, una implementación de Python bastante más antigua, pensada para integrarse con software .NET como el propio Machine Expert. El entorno de scripting de Machine Expert y la arquitectura de este proyecto no permiten resolver esa diferencia dentro de un mismo proceso: esto es una restricción de cómo está construida la integración entre ambos mundos.</p>
+
+    <p>Es una situación parecida a la de dos departamentos de una misma empresa que hablan idiomas distintos y no pueden turnarse el mismo teléfono: necesitan a alguien en medio que traduzca cada mensaje. El JSON hace ese papel — es el idioma neutral que ambos entienden, aunque ninguno de los dos lo hable de forma nativa.</p>
+
+    <p>Para quien no lo haya visto antes: JSON es simplemente una forma de escribir datos como texto, de manera que tanto una persona como un programa puedan leerlos sin ambigüedad. Una orden como "crea una variable BOOL llamada Motor_Ready" se escribiría en JSON como <code>{"cmd": "create_variable", "name": "Motor_Ready", "type": "BOOL"}</code> — nombres y valores, entre llaves, sin nada que interpretar de más. Es "universal" en el sentido de que prácticamente cualquier lenguaje de programación moderno sabe leerlo y escribirlo de forma nativa, lo que lo ha convertido en el formato por defecto para que programas distintos —aunque estén escritos en tecnologías incompatibles entre sí, como ocurre aquí— se intercambien información sin malentendidos.</p>
+
+    <p>La solución es tener <strong>dos programas separados que se hablan por red</strong>, en vez de uno solo:</p>
+
+    <ul>
+        <li>El <strong>servidor MCP</strong> (<code>server.py</code>, CPython) recibe la petición de Claude y decide qué acción ejecutar.</li>
+        <li>El <strong>bridge</strong> (<code>bridge_host.py</code>, IronPython), que se ejecuta <em>dentro</em> del propio proceso de Machine Expert. El usuario lo arranca una única vez, al principio de la sesión de trabajo, desde el menú <code>Tools → Scripting → Execute Script File</code> de la propia aplicación. A partir de ahí, el bridge abre un servidor de red local y queda escuchando en segundo plano — sin bloquear la interfaz, que sigue totalmente disponible para el usuario.</li>
+    </ul>
+
+    <p>Como ambos programas no pueden compartir memoria directamente (son procesos distintos, en versiones de Python distintas), se comunican enviándose mensajes de texto estructurado: JSON. Es un formato neutral que cualquiera de los dos puede leer y escribir sin depender de estructuras internas de Python que no son compatibles entre versiones.</p>
+
+    <div class="callout">
+        <div class="callout-title">NOTA IMPORTANTE</div>
+        <strong>Este es el punto que más conviene tener claro:</strong> el protocolo MCP conecta a Claude únicamente con el servidor MCP — no llega hasta Machine Expert. El tramo entre el servidor MCP y el bridge es un canal completamente distinto, construido a medida para este proyecto, que no tiene nada que ver con MCP.
+    </div>
+
+    <h3>Qué ocurre dentro de Machine Expert al recibir la orden</h3>
+    <p>El bridge recibe el JSON por ese canal de red, identifica qué orden se está solicitando gracias a un registro interno de comandos que la relaciona con una función concreta de la API de Scripting real de Machine Expert. El bridge localiza la función correspondiente y la ejecuta sobre el proyecto que el usuario tiene abierto en ese momento — el mismo proyecto, en la misma ventana, no una copia ni una simulación en segundo plano.</p>
+
+    <p>Un detalle técnico real que vale la pena mencionar, porque explica por qué todo esto es visible en tiempo real sin que la interfaz se congele: las operaciones que tocan la parte visual de Machine Expert (crear un elemento nuevo en el árbol de proyecto, por ejemplo) tienen que ejecutarse específicamente en el hilo principal de la interfaz gráfica — una exigencia estándar de las aplicaciones Windows, no algo propio de Machine Expert. Cualquier programa que quiera tocar la pantalla desde otro punto del código tiene que pasar por ese mismo hilo, o arriesgarse a un fallo. El bridge se encarga de enviar esas operaciones a ese hilo correctamente; si no se hiciera así, la aplicación podría bloquearse o fallar de forma impredecible justo en el peor momento: a mitad de una operación sobre el proyecto real.</p>
+
+    <p>Es también la razón por la que este enfoque resulta especialmente exigente en proyectos complejos: cuantos más elementos tiene un proyecto — ejes, servodrives, módulos de E/S — más operaciones de este tipo se encadenan en una sola petición, y más importa que cada una se ejecute en el orden y el hilo correctos.</p>
+
+    <h3>El camino de vuelta</h3>
+    <p>Una vez ejecutada la acción, el bridge construye la respuesta (qué se ha creado, qué valor tiene un parámetro, o el motivo por el que algo no fue posible), la convierte de nuevo a JSON, y la devuelve por el mismo canal de red al servidor MCP. El servidor MCP se la entrega a Claude por el protocolo MCP, y Claude la interpreta y responde al usuario en lenguaje natural — confirmando lo hecho o explicando con claridad qué ha fallado y por qué.</p>
+
+    <p>Un apunte sobre dónde vive cada dato, relevante para cualquiera que se lo pregunte desde IT: el canal entre el servidor MCP y el bridge —el que lee y modifica el proyecto de Machine Expert— es 100% local, sobre la misma máquina, sin salir a ninguna red externa. Lo que sí ocurre, como en cualquier uso de Claude, es que la conversación con el modelo (incluidas las peticiones del usuario y los resultados que las herramientas devuelven) viaja a la infraestructura de Anthropic para que Claude pueda razonar sobre ella y responder — esto no es una particularidad de este proyecto, es el funcionamiento normal de Claude como servicio.</p>
+
+    <p>La figura siguiente recoge este recorrido completo de un vistazo, de principio a fin: desde que el usuario escribe la petición hasta que Machine Expert la ejecuta y la confirmación vuelve en lenguaje natural.</p>
+
+    <img src="layout.PNG" alt="Arquitectura del sistema" class="layout-image">
+
+    <h2>2. Alcance actual — 12 dominios, 90 herramientas</h2>
+    <p>El servidor está organizado en dominios independientes, cada uno responsable de una parte concreta del proyecto de ingeniería. Todos cuentan con tests de regresión propios y han sido validados en vivo contra Machine Expert real antes de darse por cerrados.</p>
+
+    <h3>Rigor y validación</h3>
+    <p>Un servidor de este tipo puede tener dos clases de errores muy distintas, y conviene distinguirlas: errores de lógica propia (código mal escrito, casos no contemplados, formatos de respuesta inconsistentes) y errores de suposición sobre cómo se comporta realmente Machine Expert (algo que la documentación oficial afirma, o que se ha observado una vez, pero que podría no ser universalmente cierto). Ninguna de las dos se detecta con el mismo tipo de prueba, así que este proyecto usa dos:</p>
+
+    <ul>
+        <li><strong>Una suite de tests automatizados</strong> (662 casos, ejecutados en segundos) confirma que el código en sí es internamente coherente: que cada herramienta devuelve el formato de datos que promete, que rechaza correctamente lo que debe rechazar, que las conversiones de datos (nombres, rutas, tipos) hacen exactamente lo que su contrato dice. Se ejecutan contra una simulación de Machine Expert, no contra el programa real.</li>
+        <li><strong>Un plan de validación en vivo</strong>, ejecutado contra una instalación real de Machine Expert, confirma lo que ningún test automatizado puede confirmar por definición: que la propia plataforma se comporta como se ha documentado que se comporta.</li>
+    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 30%;">Dominio</th>
+                <th style="width: 15%; text-align: center;">Tools</th>
+                <th style="width: 55%;">Qué permite hacer</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Proyectos y aplicaciones</strong></td>
+                <td style="text-align: center;"><span class="badge">17</span></td>
+                <td>Abrir, cerrar y guardar proyectos; listar las aplicaciones de un controlador; compilar y consultar los mensajes de compilación por categoría; elegir a qué controlador van dirigidas las siguientes órdenes en un proyecto con varios.</td>
+            </tr>
+            <tr>
+                <td><strong>Programas y bloques (POUs)</strong></td>
+                <td style="text-align: center;"><span class="badge">9</span></td>
+                <td>Crear y editar programas, funciones y bloques de función, junto con sus acciones, métodos, propiedades y transiciones; leer y modificar tanto el área de declaración de variables como el código fuente de cada uno.</td>
+            </tr>
+            <tr>
+                <td><strong>Carpetas</strong></td>
+                <td style="text-align: center;"><span class="badge">3</span></td>
+                <td>Organizar el árbol del proyecto en carpetas, y localizarlas por su ruta de nombres.</td>
+            </tr>
+            <tr>
+                <td><strong>Árbol del proyecto</strong></td>
+                <td style="text-align: center;"><span class="badge">5</span></td>
+                <td>Renombrar, mover, reordenar y eliminar cualquier elemento del proyecto; inventariar todo lo que cuelga de un bus SERCOS sin importar de qué familia de dispositivo se trate.</td>
+            </tr>
+            <tr>
+                <td><strong>Tareas</strong></td>
+                <td style="text-align: center;"><span class="badge">8</span></td>
+                <td>Crear tareas de ejecución, configurarlas, y asignar, ordenar o modificar las llamadas a programas dentro de ellas.</td>
+            </tr>
+            <tr>
+            <td><strong>Encoders lógicos</strong></td>
+                <td style="text-align: center;"><span class="badge">5</span></td>
+                <td>Crear encoders lógicos y leer o modificar sus parámetros de configuración.</td>
+            </tr>
+
+            <tr>
+                <td><strong>Tipos de datos (DUTs)</strong></td>
+                <td style="text-align: center;"><span class="badge">5</span></td>
+                <td>Definir tipos de datos propios — estructuras, enumeraciones, uniones y alias.</td>
+            </tr>
+            <tr>
+                <td><strong>Variables globales (GVLs)</strong></td>
+                <td style="text-align: center;"><span class="badge">8</span></td>
+                <td>Crear y editar listas de variables globales y variables persistentes.</td>
+            </tr>
+            <tr>
+                <td><strong>SERCOS — Lexium</strong></td>
+                <td style="text-align: center;"><span class="badge">6</span></td>
+                <td>Crear servodrives y módulos de eje sobre el bus SERCOS; cambiar el tipo de un servodrive ya creado sin perder su configuración; leer y modificar sus parámetros.</td>
+            </tr>
+            <tr>
+                <td><strong>SERCOS — TM5</strong></td>
+                <td style="text-align: center;"><span class="badge">10</span></td>
+                <td>Crear cabeceras y módulos de E/S remota TM5, elegirlos a partir del catálogo instalado, y mapear sus entradas/salidas a variables del proyecto.</td>
+            </tr>
+            <tr>
+                <td><strong>SERCOS — EdgeIO</strong></td>
+                <td style="text-align: center;"><span class="badge">10</span></td>
+                <td>Lo mismo que TM5, sobre la familia de E/S remota Modicon Edge I/O.</td>
+            </tr>
+            <tr>
+                <td><strong>Diagnósticos</strong></td>
+                <td style="text-align: center;"><span class="badge">4</span></td>
+                <td>Comprobar el estado de la conexión con Machine Expert, y verificar internamente que ciertas garantías de la propia plataforma se mantienen ciertas (uso interno de validación, no herramientas de ingeniería diaria).</td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>Total: 90 herramientas</strong> (86 de uso directo en ingeniería, 4 de diagnóstico interno).</p>
+
+    <h2>3. Campo de aplicación: una elección deliberada</h2>
+    <p>El catálogo del capítulo anterior no se diseñó para cualquier tarea de automatización — tiene un objetivo muy concreto. Ese objetivo es PacDrive3, uno de los controladores de motion control de más alta gama de nuestro catálogo, y en particular su Template Full Programming Framework: la base de programación con la que se desarrollan sus proyectos.</p>
+
+    <p>Vale la pena explicar qué es esto para quien no trabaje con PacDrive3 habitualmente. Un "template" de programación no es un simple punto de partida vacío — es una estructura completa, ya organizada, con cientos de combinaciones posibles de módulos, ejes y opciones de configuración, pensada para adaptarse a cualquier máquina que se quiera construir sobre ella. Esa misma flexibilidad, que es lo que hace a PacDrive3 tan potente, es también lo que hace que dominarlo lleve tiempo: cada ingeniero que se incorpora a un proyecto PacDrive3 necesita una inversión real para interiorizar esa estructura antes de ser productivo con ella — un coste que dentro de OEM Solutions conocemos bien.</p>
+
+    <p>Este documento parte de una premisa simple: si una IA puede aportar valor real en ingeniería, el sitio para comprobarlo no es la tarea más fácil del catálogo, sino la más exigente. Automatizar algo sencillo demuestra que una herramienta funciona; automatizar algo que ya es conocido internamente como complejo demuestra además que la decisión de dónde aplicarla fue deliberada — un objetivo concreto, no un experimento genérico buscando cualquier caso de uso.</p>
+
+    <p>Esa lógica explica, por ejemplo, por qué una parte importante del catálogo se concentra en el bus SERCOS: los dispositivos que cuelgan de él —servodrives, cabeceras de E/S remota— tienen una estructura especialmente rica, con módulos hijos y nietos, la posibilidad de cambiar de modelo sin perder la configuración, de mapear sus entradas y salidas, de parametrizarse de formas muy distintas. Cada una de esas operaciones concretas se presta bien a convertirse en una herramienta propia, y de ahí las 26 que cubren Lexium/ILM, TM5 y EdgeIO. Pero el verdadero potencial del proyecto no está solo ahí: está en la capacidad de leer, interpretar, crear y modificar código — programas, bloques de función y sus acciones, métodos y propiedades, los POUs del capítulo anterior —, así como instanciar variables y bloques de función dentro de ese mismo código. Es esa combinación, y no un único dominio, la que permite operar sobre el template completo.</p>
+
+    <p>El resultado, tal como se ha descrito en el capítulo 1, es un puente entre Claude y EcoStruxure Machine Expert construido mediante MCP — un estándar abierto, no exclusivo de Claude, que permite conectar un LLM con una herramienta de trabajo real no pensada originalmente para eso. <strong>No es un chatbot aparte que opina sobre el proyecto: es la IA operando el propio software desde dentro, con la misma ventana de Machine Expert abierta y visible que usaría cualquier ingeniero.</strong></p>
+
+    <h2>4. Dos historias reales: cuando la plataforma calla, el sistema avisa</h2>
+    
+    <div class="case-box">
+        <div class="case-title">Caso 1: Convertir un servodrive de tipo sin perder su configuración</div>
+        <p style="margin: 4px 0;">Nació de un incidente real: tras crear un servodrive y empezar a configurarlo, me di cuenta de que había elegido el modelo equivocado — un Lexium LXM62 en lugar del LXM52 que necesitaba. En vez de borrarlo y volver a crearlo y parametrizarlo desde cero, la pregunta que surgió fue directa: ¿puede cambiarse el tipo de un dispositivo ya creado sin perder la configuración que ya tiene?</p>
+        <p style="margin: 4px 0;">La respuesta es sí, y la propia Machine Expert lo permite mediante la misma función que usa su menú "Convert Device". Pero la investigación reveló algo que Machine Expert no comunica de forma fiable: si el servodrive tiene módulos hijo incompatibles con el nuevo tipo, se eliminan en silencio durante la conversión — sin excepción, y sin el aviso que la propia interfaz gráfica sí muestra en ese mismo caso.</p>
+        <p style="margin: 4px 0;" class="solution-text">✓ La herramienta construida compara el estado del dispositivo antes y después de convertir, y reporta explícitamente qué módulos se han perdido. Es una protección que ni la plataforma original ofrece de forma consistente.</p>
+    </div>
+
+    <div class="case-box">
+        <div class="case-title">Caso 2: Reordenar módulos de E/S remota sin perder ninguno por el camino</div>
+        <p style="margin: 4px 0;">Una cabecera de E/S remota EdgeIO exige que su primer módulo sea siempre uno de alimentación — es una regla de la propia plataforma. Al investigar cómo reordenar los módulos de esa cabecera, apareció un caso concreto: si se intenta sacar el módulo de alimentación de su posición inicial, Machine Expert puede eliminarlo por completo, sin ninguna excepción ni aviso.</p>
+        <p style="margin: 4px 0;">La decisión de diseño fue deliberada: no bloquear esta operación dentro de la herramienta genérica de reordenado, para no mezclar el conocimiento de un dispositivo concreto en una pieza pensada para funcionar igual en cualquier familia de dispositivos.</p>
+        <p style="margin: 4px 0;" class="solution-text">✓ En su lugar, la herramienta compara qué elementos existían antes y después del movimiento, y reporta de inmediato cualquier desaparición.</p>
+    </div>
+
+    <p>En ambos casos, el criterio ha sido el mismo: cuando se detecta un comportamiento de riesgo en la propia plataforma, la respuesta no es ocultarlo ni sobreproteger sin necesidad — es hacerlo visible para quien recibe el resultado.</p>
+
+    <h2>5. Qué puede hacer y qué no, hoy — y próximos pasos</h2>
+    <p>Antes de mirar hacia delante, conviene reunir en un solo sitio varios límites que hasta ahora han ido apareciendo sueltos a lo largo del documento:</p>
+    
+    <ul>
+        <li>Opera en <strong>modo offline</strong>: sobre el proyecto abierto en Machine Expert, sin conexión con el controlador físico.</li>
+        <li>El bridge se ejecuta <strong>en local</strong>, dentro del propio proceso de Machine Expert — no hay ningún servidor intermedio en la nube entre el servidor MCP y Machine Expert.</li>
+        <li>Claude solo puede usar las herramientas del <strong>catálogo cerrado</strong> descrito en el capítulo 2 — no ejecuta código arbitrario ni tiene acceso a Machine Expert más allá de esas 90 funciones concretas.</li>
+        <li>Machine Expert permanece <strong>abierto y visible</strong> durante toda la sesión: nada ocurre fuera de la vista del ingeniero.</li>
+    </ul>
+
+    <p>Esta primera fase se ha centrado en un conjunto de herramientas básicas para el modo offline. Las líneas que me gustaría explorar a continuación:</p>
+    <ul>
+        <li><strong>Lenguajes gráficos</strong> (FBD, LD) — hoy el trabajo con lógica de programa se limita a texto estructurado.</li>
+        <li><strong>Modo online</strong> — todo lo construido hasta ahora opera sin conexión con el controlador físico.</li>
+        <li><strong>Herramientas de alto nivel</strong> capaces de modificar el template completo a nivel de módulos o ejes, en vez de elemento a elemento.</li>
+    </ul>
+
+    <p>El objetivo de esta primera fase no es sustituir al ingeniero, sino explorar hasta dónde puede llegar una IA cuando deja de limitarse a conversar sobre una herramienta y puede interactuar directamente con ella. La siguiente fase determinará qué operaciones aportan realmente valor en el trabajo diario de ingeniería.</p>
+
+    <div class="footer">
+        <span style="font-weight: bold; color: #009639;">#ModelContextProtocol #ClaudeAI #PacDrive3 #IndustrialAutomation #EcoStruxure</span>
+        <span></span>
+    </div>
+
+</body>
+</html>
