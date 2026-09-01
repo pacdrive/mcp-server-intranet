@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>IA operando EcoStruxure Machine Expert - Un servidor MCP para PacDrive3</title>
+
+    <!-- ETIQUETAS OPEN GRAPH -->
+    <meta property="og:title" content="IA + EcoStruxure Machine Expert | Informe Técnico" />
+    <meta property="og:description" content="Integración directa de IA con EcoStruxure Machine Expert de Schneider Electric para la automatización de proyectos en el framework PacDrive3 Template Full." />
+    <meta property="og:image" content="https://pacdrive.github.io/mcp-server-intranet/banner.jpeg" />
+    <meta property="og:url" content="https://pacdrive.github.io/mcp-server-intranet/" />
+    <meta property="og:type" content="article" />
+
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -177,6 +185,44 @@
             margin: 30px 0 30px 0;
         }
 
+        /* CONTENEDOR FLEXIBLE PARA VÍDEOS EN PARALELO */
+        .video-grid {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .video-card {
+            flex: 1;
+            min-width: 280px; /* Asegura un tamaño mínimo en móviles */
+            background: #f8f9fa;
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .video-card video {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            display: block;
+        }
+        .video-caption {
+            font-size: 8.5pt;
+            color: #555;
+            margin-top: 8px;
+            text-align: center;
+            line-height: 1.4;
+        }
+        
+        /* En pantallas pequeñas (móviles) los vídeos pasan a estar uno debajo del otro */
+        @media (max-width: 650px) {
+            .video-grid {
+                flex-direction: column;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -287,7 +333,7 @@
                 <td>Crear tareas de ejecución, configurarlas, y asignar, ordenar o modificar las llamadas a programas dentro de ellas.</td>
             </tr>
             <tr>
-            <td><strong>Encoders lógicos</strong></td>
+                <td><strong>Encoders lógicos</strong></td>
                 <td style="text-align: center;"><span class="badge">5</span></td>
                 <td>Crear encoders lógicos y leer o modificar sus parámetros de configuración.</td>
             </tr>
@@ -325,6 +371,41 @@
         </tbody>
     </table>
     <p><strong>Total: 90 herramientas</strong> (86 de uso directo en ingeniería, 4 de diagnóstico interno).</p>
+
+    <!-- INTRODUCCIÓN A LAS DEMOS -->
+    <div style="margin-top: 25px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
+        <span class="badge" style="font-size: 8pt; padding: 3px 8px; border-radius: 4px;">DEMOS</span>
+        <span style="font-weight: bold; font-size: 10.5pt; color: #2c3e50; text-transform: uppercase; letter-spacing: 0.5px;">
+            Ejecución práctica en vídeo
+        </span>
+    </div>
+    <p style="font-size: 9.5pt; color: #555; margin-bottom: 15px;">
+        Para poner a prueba el catálogo de herramientas detallado en la tabla anterior, los siguientes vídeos muestran varios ejemplos de operación en tiempo real que ilustran la respuesta inmediata de EcoStruxure Machine Expert ante las peticiones enviadas desde Claude Desktop:
+    </p>
+
+    <!-- GALERÍA DE DEMOSTRACIONES EN VÍDEO -->
+    <div class="video-grid">
+        <div class="video-card">
+            <video controls preload="metadata">
+                <source src="./Video1.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de vídeo HTML5.
+            </video>
+            <div class="video-caption">
+                <strong>Demo 1:</strong> Operación en tiempo real y modificación del árbol de proyectos mediante Claude Desktop.
+            </div>
+        </div>
+
+        <div class="video-card">
+            <video controls preload="metadata">
+                <source src="./Video2.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de vídeo HTML5.
+            </video>
+            <div class="video-caption">
+                <strong>Demo 2:</strong> Reordenación de módulos hardware SERCOS y validación de seguridad de parámetros.
+            </div>
+        </div>
+    </div>
+
 
     <h2>3. Campo de aplicación: una elección deliberada</h2>
     <p>El catálogo del capítulo anterior no se diseñó para cualquier tarea de automatización — tiene un objetivo muy concreto. Ese objetivo es PacDrive3, uno de los controladores de motion control de más alta gama de nuestro catálogo, y en particular su Template Full Programming Framework: la base de programación con la que se desarrollan sus proyectos.</p>
