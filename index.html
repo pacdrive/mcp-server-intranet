@@ -372,6 +372,17 @@
     </table>
     <p><strong>Total: 90 herramientas</strong> (86 de uso directo en ingeniería, 4 de diagnóstico interno).</p>
 
+    <h2>3. Campo de aplicación: una elección deliberada</h2>
+    <p>El catálogo del capítulo anterior no se diseñó para cualquier tarea de automatización — tiene un objetivo muy concreto. Ese objetivo es PacDrive3, uno de los controladores de motion control de más alta gama de nuestro catálogo, y en particular su Template Full Programming Framework: la base de programación con la que se desarrollan sus proyectos.</p>
+
+    <p>Vale la pena explicar qué es esto para quien no trabaje con PacDrive3 habitualmente. Un "template" de programación no es un simple punto de partida vacío — es una estructura completa, ya organizada, con cientos de combinaciones posibles de módulos, ejes y opciones de configuración, pensada para adaptarse a cualquier máquina que se quiera construir sobre ella. Esa misma flexibilidad, que es lo que hace a PacDrive3 tan potente, es también lo que hace que dominarlo lleve tiempo: cada ingeniero que se incorpora a un proyecto PacDrive3 necesita una inversión real para interiorizar esa estructura antes de ser productivo con ella — un coste que dentro de OEM Solutions conocemos bien.</p>
+
+    <p>Este documento parte de una premisa simple: si una IA puede aportar valor real en ingeniería, el sitio para comprobarlo no es la tarea más fácil del catálogo, sino la más exigente. Automatizar algo sencillo demuestra que una herramienta funciona; automatizar algo que ya es conocido internamente como complejo demuestra además que la decisión de dónde aplicarla fue deliberada — un objetivo concreto, no un experimento genérico buscando cualquier caso de uso.</p>
+
+    <p>Esa lógica explica, por ejemplo, por qué una parte importante del catálogo se concentra en el bus SERCOS: los dispositivos que cuelgan de él —servodrives, cabeceras de E/S remota— tienen una estructura especialmente rica, con módulos hijos y nietos, la posibilidad de cambiar de modelo sin perder la configuración, de mapear sus entradas y salidas, de parametrizarse de formas muy distintas. Cada una de esas operaciones concretas se presta bien a convertirse en una herramienta propia, y de ahí las 26 que cubren Lexium/ILM, TM5 y EdgeIO. Pero el verdadero potencial del proyecto no está solo ahí: está en la capacidad de leer, interpretar, crear y modificar código — programas, bloques de función y sus acciones, métodos y propiedades, los POUs del capítulo anterior —, así como instanciar variables y bloques de función dentro de ese mismo código. Es esa combinación, y no un único dominio, la que permite operar sobre el template completo.</p>
+
+    <p>El resultado, tal como se ha descrito en el capítulo 1, es un puente entre Claude y EcoStruxure Machine Expert construido mediante MCP — un estándar abierto, no exclusivo de Claude, que permite conectar un LLM con una herramienta de trabajo real no pensada originalmente para eso. <strong>No es un chatbot aparte que opina sobre el proyecto: es la IA operando el propio software desde dentro, con la misma ventana de Machine Expert abierta y visible que usaría cualquier ingeniero.</strong></p>
+
     <!-- INTRODUCCIÓN A LAS DEMOS -->
     <div style="margin-top: 25px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;">
         <span class="badge" style="font-size: 8pt; padding: 3px 8px; border-radius: 4px;">DEMOS</span>
@@ -405,18 +416,6 @@
             </div>
         </div>
     </div>
-
-
-    <h2>3. Campo de aplicación: una elección deliberada</h2>
-    <p>El catálogo del capítulo anterior no se diseñó para cualquier tarea de automatización — tiene un objetivo muy concreto. Ese objetivo es PacDrive3, uno de los controladores de motion control de más alta gama de nuestro catálogo, y en particular su Template Full Programming Framework: la base de programación con la que se desarrollan sus proyectos.</p>
-
-    <p>Vale la pena explicar qué es esto para quien no trabaje con PacDrive3 habitualmente. Un "template" de programación no es un simple punto de partida vacío — es una estructura completa, ya organizada, con cientos de combinaciones posibles de módulos, ejes y opciones de configuración, pensada para adaptarse a cualquier máquina que se quiera construir sobre ella. Esa misma flexibilidad, que es lo que hace a PacDrive3 tan potente, es también lo que hace que dominarlo lleve tiempo: cada ingeniero que se incorpora a un proyecto PacDrive3 necesita una inversión real para interiorizar esa estructura antes de ser productivo con ella — un coste que dentro de OEM Solutions conocemos bien.</p>
-
-    <p>Este documento parte de una premisa simple: si una IA puede aportar valor real en ingeniería, el sitio para comprobarlo no es la tarea más fácil del catálogo, sino la más exigente. Automatizar algo sencillo demuestra que una herramienta funciona; automatizar algo que ya es conocido internamente como complejo demuestra además que la decisión de dónde aplicarla fue deliberada — un objetivo concreto, no un experimento genérico buscando cualquier caso de uso.</p>
-
-    <p>Esa lógica explica, por ejemplo, por qué una parte importante del catálogo se concentra en el bus SERCOS: los dispositivos que cuelgan de él —servodrives, cabeceras de E/S remota— tienen una estructura especialmente rica, con módulos hijos y nietos, la posibilidad de cambiar de modelo sin perder la configuración, de mapear sus entradas y salidas, de parametrizarse de formas muy distintas. Cada una de esas operaciones concretas se presta bien a convertirse en una herramienta propia, y de ahí las 26 que cubren Lexium/ILM, TM5 y EdgeIO. Pero el verdadero potencial del proyecto no está solo ahí: está en la capacidad de leer, interpretar, crear y modificar código — programas, bloques de función y sus acciones, métodos y propiedades, los POUs del capítulo anterior —, así como instanciar variables y bloques de función dentro de ese mismo código. Es esa combinación, y no un único dominio, la que permite operar sobre el template completo.</p>
-
-    <p>El resultado, tal como se ha descrito en el capítulo 1, es un puente entre Claude y EcoStruxure Machine Expert construido mediante MCP — un estándar abierto, no exclusivo de Claude, que permite conectar un LLM con una herramienta de trabajo real no pensada originalmente para eso. <strong>No es un chatbot aparte que opina sobre el proyecto: es la IA operando el propio software desde dentro, con la misma ventana de Machine Expert abierta y visible que usaría cualquier ingeniero.</strong></p>
 
     <h2>4. Dos historias reales: cuando la plataforma calla, el sistema avisa</h2>
     
