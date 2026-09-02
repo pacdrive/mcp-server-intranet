@@ -225,7 +225,17 @@
         .video-grid {
             display: flex;
             gap: 20px;
-            margin: 30px 0;
+            margin: 30px 0 15px 0;
+        }
+        /* CONTENEDOR PARA EL TERCER VÍDEO CENTRADO */
+        .video-grid-single {
+            display: flex;
+            justify-content: center;
+            margin: 0 0 30px 0;
+        }
+        .video-grid-single .video-card {
+            width: 100%;
+            max-width: 48.5%;
         }
         .video-card {
             flex: 1;
@@ -251,10 +261,13 @@
             text-align: center;
             line-height: 1.4;
         }
-        
+
         @media (max-width: 650px) {
             .video-grid {
                 flex-direction: column;
+            }
+            .video-grid-single .video-card { 
+                max-width: 100%; 
             }
             .lang-selector {
                 border-radius: 8px;
@@ -592,6 +605,8 @@
     </p>
 
     <!-- GALERÍA DE DEMOSTRACIONES EN VÍDEO -->
+
+    <!-- 1. Los dos primeros vídeos en paralelo -->
     <div class="video-grid">
         <div class="video-card">
             <video controls preload="metadata">
@@ -620,11 +635,27 @@
         </div>
     </div>
 
+    <!-- 2. El tercer vídeo centrado abajo -->
+    <div class="video-grid-single">
+        <div class="video-card">
+            <video controls preload="metadata">
+                <source src="./Video3.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de vídeo HTML5.
+            </video>
+            <div class="video-caption" data-lang="es">
+                <strong>Demo 3:</strong> Diagnóstico de errores de compilación y corrección automática en Machine Expert.
+            </div>
+            <div class="video-caption" data-lang="en">
+                <strong>Demo 3:</strong> Compilation error diagnostics and automatic correction in Machine Expert.
+            </div>
+        </div>
+    </div>
+
     <!-- Script automático para toda la rejilla de videos -->
     <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Busca automáticamente cualquier etiqueta <video> que esté dentro de .video-grid
-        const videos = document.querySelectorAll(".video-grid video");
+        const videos = document.querySelectorAll("video");
         videos.forEach(video => {
         video.addEventListener('loadedmetadata', () => {
             video.currentTime = 0.1;
