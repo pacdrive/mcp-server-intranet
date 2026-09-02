@@ -599,10 +599,10 @@
                 Tu navegador no soporta la reproducción de vídeo HTML5.
             </video>
             <div class="video-caption" data-lang="es">
-                <strong>Demo 1:</strong> Operación en tiempo real y modificación del árbol de proyectos mediante Claude Desktop.
+                <strong>Demo 1:</strong> Reordenación de módulos hardware SERCOS y validación de seguridad de parámetros.
             </div>
             <div class="video-caption" data-lang="en">
-                <strong>Demo 1:</strong> Real-time operation and project tree modification via Claude Desktop.
+                <strong>Demo 1:</strong> SERCOS hardware module reordering and parameter safety validation.
             </div>
         </div>
 
@@ -612,13 +612,26 @@
                 Tu navegador no soporta la reproducción de vídeo HTML5.
             </video>
             <div class="video-caption" data-lang="es">
-                <strong>Demo 2:</strong> Reordenación de módulos hardware SERCOS y validación de seguridad de parámetros.
+                <strong>Demo 2:</strong> Operación en tiempo real y modificación del árbol de proyectos mediante Claude Desktop.
             </div>
             <div class="video-caption" data-lang="en">
-                <strong>Demo 2:</strong> SERCOS hardware module reordering and parameter safety validation.
+                <strong>Demo 2:</strong> Real-time operation and project tree modification via Claude Desktop.
             </div>
         </div>
     </div>
+
+    <!-- Script automático para toda la rejilla de videos -->
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Busca automáticamente cualquier etiqueta <video> que esté dentro de .video-grid
+        const videos = document.querySelectorAll(".video-grid video");
+        videos.forEach(video => {
+        video.addEventListener('loadedmetadata', () => {
+            video.currentTime = 0.1;
+        });
+        });
+    });
+    </script>
 
     <!-- SECCIÓN 4 -->
     <h2 data-lang="es">4. Dos historias reales: cuando la plataforma calla, el sistema avisa</h2>
