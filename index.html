@@ -391,7 +391,7 @@
     <p data-lang="es">La figura siguiente recoge este recorrido completo de un vistazo, de principio a fin: desde que el usuario escribe la petición hasta que Machine Expert la ejecuta y la confirmación vuelve en lenguaje natural.</p>
     <p data-lang="en">The following figure captures this complete journey at a glance, from start to finish: from the moment the user types the request until Machine Expert executes it and confirmation returns in natural language.</p>
 
-    <img src="layout.PNG" alt="Arquitectura del sistema" class="layout-image">
+    <img src="layout_ES.png" id="layout-img" alt="Arquitectura del sistema" class="layout-image">
 
     <!-- SECCIÓN 2 -->
     <h2 data-lang="es">2. Alcance actual — 12 dominios, 90 herramientas</h2>
@@ -747,6 +747,16 @@
                     el.classList.remove('active-lang');
                 }
             });
+
+            // === CAMBIO DINÁMICO DE LA IMAGEN LAYOUT ===
+            const layoutImg = document.getElementById('layout-img');
+            if (layoutImg) {
+                if (lang === 'en') {
+                    layoutImg.src = 'layout_EN.png';
+                } else {
+                    layoutImg.src = 'layout_ES.png';
+                }
+            }
 
             // Actualizar títulos de metadatos o tags si fuera necesario
             if (lang === 'en') {
